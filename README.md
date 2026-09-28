@@ -5,7 +5,7 @@
 - 自动扫描缓存目录，按合集（`groupId`）分组、按分 P（`p`）排序
 - 校验每个分 P 的缓存完整性（`videoInfo.json` / `.videoInfo`、`.playurl`、音频与视频 m4s）
 - 交互式选择要处理的合集，输出处理汇总
-- 自动剥离 m4s 文件开头的 9 个占位字节，调用 ffmpeg 无损合并（`-c:v copy -c:a copy`）
+- 自动剥离 m4s 文件开头的占位字节，调用 ffmpeg 无损合并（`-c:v copy -c:a copy`）
 - 生成的 MP4 在 Windows、Android、iOS 均可正常播放
 
 ## 运行环境
@@ -105,6 +105,6 @@ BiliCacheMerge.exe -config config.ini
 
 ## 说明
 
-- m4s 开头有 9 个占位字节，程序会先剥离到临时文件再交给 ffmpeg，合并结束自动清理临时文件。
+- m4s 开头有占位字节，程序会先剥离到临时文件再交给 ffmpeg，合并结束自动清理临时文件。
 - 音频直接复制源 AAC 音轨（`-c:a copy`）。早期版本曾转码为 AC3，会导致 **Android 端有画面无声音**，现已改为复制。
 - 重新生成的 MP4 若与旧文件同名会被跳过；需要重做请先删除旧的输出文件。
